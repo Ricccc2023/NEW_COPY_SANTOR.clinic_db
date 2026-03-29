@@ -1,19 +1,19 @@
 <?php
-require_once __DIR__ . "/../../includes/config.php";
-require_once __DIR__ . "/../../includes/auth.php";
+require_once __DIR__ . "/../includes/config.php";
+require_once __DIR__ . "/../includes/auth.php";
 
 $title  = "Edit Doctor";
 $active = "doctors";
 
 /* ADMIN ONLY */
 if (($_SESSION['user']['role'] ?? '') !== 'admin') {
-    header("Location: /clinic_db/public/dashboard.php");
+    header("Location: dashboard.php");
     exit;
 }
 
 $id = (int)($_GET['id'] ?? 0);
 if ($id <= 0) {
-    header("Location: /clinic_db/public/doctors/index.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -35,7 +35,7 @@ $stmt->execute([':id' => $id]);
 $doctor = $stmt->fetch();
 
 if (!$doctor) {
-    header("Location: /clinic_db/public/doctors/index.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -144,7 +144,7 @@ ob_start();
     </div>
 
     <div class="page-action">
-        <a href="/clinic_db/public/doctors/index.php" class="btn btn-primary">
+        <a href="index.php" class="btn-save btn-sm">
             Back
         </a>
     </div>
@@ -234,5 +234,5 @@ document.getElementById("togglePassword").addEventListener("click", function() {
 
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . "/../../includes/layout.php";
+require_once __DIR__ . "/../includes/layout.php";
 ?>

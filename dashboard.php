@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../includes/config.php";
-require_once __DIR__ . "/../includes/auth.php";
+require_once __DIR__ . "/includes/config.php";
+require_once __DIR__ . "/includes/auth.php";
 
 $title  = "Dashboard";
 $active = "dashboard";
@@ -108,6 +108,6 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . "/../includes/layout.php";
-require_once __DIR__ . "/../includes/footer.php";
+require_once __DIR__ . "/includes/layout.php";
+require_once __DIR__ . "/includes/footer.php";
 ?>

@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../../includes/config.php";
-require_once __DIR__ . "/../../includes/auth.php";
+require_once __DIR__ . "/../includes/config.php";
+require_once __DIR__ . "/../includes/auth.php";
 
 if (($_SESSION['user']['role'] ?? '') !== 'admin') {
     header("Location: index.php");

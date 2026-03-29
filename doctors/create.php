@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../../includes/config.php";
-require_once __DIR__ . "/../../includes/auth.php";
+require_once __DIR__ . "/../includes/config.php";
+require_once __DIR__ . "/../includes/auth.php";
 
 require_role(['admin']);
 
@@ -96,11 +96,17 @@ ob_start();
         <h2>Add Accounts</h2>
         <p class="sub">Create Doctor or Staff Login</p>
     </div>
+    <div class="page-action">
+        <a href="index.php" class="btn-save btn-sm">Back</a>
+    </div>      
+
 </div>
+
+class="btn-save btn-sm"
 
 <?php if ($errors): ?>
 <div class="card" style="border:1px solid #dc3545;background:#ffeaea;margin-bottom:15px;">
-    <b style="color:#dc3545;">Please fix:</b>
+    <b style="color:#dc3545;">Please fix:</b>s
     <ul style="margin:10px 0 0 18px;">
         <?php foreach ($errors as $e): ?>
             <li><?= htmlspecialchars($e) ?></li>
@@ -182,5 +188,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . "/../../includes/layout.php";
+require_once __DIR__ . "/../includes/layout.php";
 ?>

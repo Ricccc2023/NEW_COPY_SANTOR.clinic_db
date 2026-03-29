@@ -1,6 +1,6 @@
 <?php
-require_once '../../includes/config.php';
-require_once '../../includes/auth.php';
+require_once '../includes/config.php';
+require_once '../includes/auth.php';
 require_role(['admin','doctor']);
 
 $patient_id = $_GET['id'] ?? 0;

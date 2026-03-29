@@ -1,6 +1,7 @@
 <?php
-require_once '../../includes/config.php';
-require_once '../../includes/auth.php';
+require_once '../includes/config.php';
+require_once '../includes/auth.php';
+
 require_role(['admin','staff']);
 
 if (!isset($_GET['visit_id'])) {
@@ -41,10 +42,7 @@ if (!$data) {
 /* ===============================
 GET TESTS PER VISIT
 =============================== */
-if ($stmt->rowCount() === 0) {
-    http_response_code(400);
-    exit;
-}
+
 $stmt = $pdo->prepare("
     SELECT lt.name, pt.test_fee
     FROM patient_tests pt
@@ -61,15 +59,17 @@ COMPUTATIONS
 $totalLab = 0;
 $testNames = [];
 
-foreach ($tests as $t) {
-    $fee = (float)$t['test_fee'];
-    $totalLab += $fee;
-    $testNames[] = $t['name'] . " (₱" . number_format($fee,2) . ")";
+if ($tests) {
+    foreach ($tests as $t) {
+        $fee = (float)$t['test_fee'];
+        $totalLab += $fee;
+        $testNames[] = $t['name'] . " (₱" . number_format($fee,2) . ")";
+    }
 }
 
-$labSummary = implode(", ", $testNames);
+$labSummary = $testNames ? implode(", ", $testNames) : 'No tests recorded';
 
-/* Extra charges (default 0) */
+/* Default charges */
 $supplies = 0;
 $drugs = 0;
 $misc = 0;
@@ -81,6 +81,7 @@ $professionalFee = (float)$data['professional_fee'];
 $overallSubtotal = $subTotal + $professionalFee;
 $total = $overallSubtotal;
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,9 +99,6 @@ body{ font-family:Arial; margin:0; }
 .clinic-info h2{ margin:0; font-size:18px; line-height:1.3; }
 .clinic-info small{ font-size:12px; }
 
-.title{ text-align:right; }
-.title h1{ font-size:18px; margin:0; }
-
 table{ width:100%; border-collapse:collapse; margin-top:20px; }
 td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 
@@ -114,14 +112,8 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 .signature{
     margin-top:50px;
 }
-.receipt-container {
-    position: relative;
-}
 
 .print-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     background-color: #28a745;
     color: white;
     padding: 8px 14px;
@@ -129,12 +121,8 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    text-decoration: none;
 }
 
-.print-btn:hover {
-    background-color: #218838;
-}
 @media print{
     .no-print{ display:none; }
 }
@@ -144,10 +132,7 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 <body>
 <div class="container">
 
-<!-- HEADER -->
-
 <div class="header">
-
     <div class="left">
         <img src="logo.png" alt="Clinic Logo">
 
@@ -165,13 +150,10 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 
     <div style="text-align:right;">
         <div class="no-print">
-            <button onclick="window.print()" class="print-btn">
-                🖨 Print
-            </button>
+            <button onclick="window.print()" class="print-btn">Print</button>
         </div>
         <h1 style="margin-top:10px;">BILLING RECEIPT</h1>
     </div>
-
 </div>
 
 <hr>
@@ -188,12 +170,12 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 <td><strong>Patient ID:</strong> <?= $data['patient_id'] ?></td>
 </tr>
 <tr>
-<td><strong>Visit Date:</strong> <?= htmlspecialchars($data['visit_date']) ?></td>
+<td><strong>Visit Date:</strong> <?= date('M d, Y', strtotime($data['visit_date'])) ?></td>
 <td><strong>Invoice #:</strong> <?= htmlspecialchars($data['invoice_number'] ?? '-') ?></td>
 </tr>
 </table>
 
-<!-- BILLING TABLE -->
+<!-- BILLING -->
 
 <table>
 
@@ -204,7 +186,7 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 <tr>
 <td>
 <strong>Laboratory & Diagnostics</strong><br>
-<small><?= $labSummary ?: 'No tests recorded' ?></small>
+<small><?= htmlspecialchars($labSummary) ?></small>
 </td>
 <td class="right">₱<?= number_format($totalLab,2) ?></td>
 </tr>
@@ -220,7 +202,7 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 </tr>
 
 <tr class="section-title">
-<td colspan="2">Others: pls. specify</td>
+<td colspan="2">Others</td>
 </tr>
 
 <tr>
@@ -239,7 +221,7 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 </tr>
 
 <tr class="section-title">
-<td colspan="2">Professional Fee/s</td>
+<td colspan="2">Professional Fee</td>
 </tr>
 
 <tr>
@@ -259,32 +241,12 @@ td, th{ border:1px solid #000; padding:8px; font-size:13px; }
 
 </table>
 
-<!-- SIGNATURE -->
-
 <div class="signature">
 <br><br>
 _____________________________<br>
 Accountant / Authorized Personnel
 </div>
 
-<br>
-
-<div class="no-print" style="text-align:right; margin-bottom:10px;">
-    <button onclick="window.print()" class="print-btn">
-        🖨 Print
-    </button>
-</div>
-
-    <!-- Dito yung receipt content mo -->
-    <div class="receipt-content">
-        <!-- receipt details here -->
-    </div>
-
 </div>
 </body>
 </html>
-
-
-
-
-

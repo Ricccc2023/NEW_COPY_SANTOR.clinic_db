@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../includes/config.php';
-require_once __DIR__ . '/../../includes/auth.php';
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/auth.php';
 require_role(['admin']);
 
 $errors = [];
@@ -186,4 +186,4 @@ appointmentSelect.addEventListener('change', function(){
 
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . '/../../includes/layout.php';
+require_once __DIR__ . '/../includes/layout.php';

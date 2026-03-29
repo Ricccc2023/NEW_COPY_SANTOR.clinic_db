@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../includes/config.php";
+require_once __DIR__ . "/includes/config.php";
 
 // If already logged in, go dashboard
 if (isset($_SESSION['user'])) {

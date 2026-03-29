@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../includes/config.php';
-require_once __DIR__ . '/../../includes/auth.php';
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/auth.php';
 
 $id = (int)$_GET['id'];
 
@@ -172,5 +172,5 @@ el.style.display = "none";
 
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . '/../../includes/layout.php';
+require_once __DIR__ . '/../includes/layout.php';
 ?>

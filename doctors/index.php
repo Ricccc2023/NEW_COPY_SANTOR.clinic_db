@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../../includes/config.php";
-require_once __DIR__ . "/../../includes/auth.php";
+require_once __DIR__ . "/../includes/config.php";
+require_once __DIR__ . "/../includes/auth.php";
 
 $title = "Doctors";
 $active = "doctors";
@@ -134,7 +134,7 @@ Search
 </button>
 
 <a class="btn-add"
-href="/clinic_db/public/doctors/create.php"
+href="create.php"
 title="Add Doctor">
 +
 </a>
@@ -296,5 +296,5 @@ No doctors found.
 
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . "/../../includes/layout.php";
+require_once __DIR__ . "/../includes/layout.php";
 ?>

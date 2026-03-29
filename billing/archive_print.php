@@ -1,6 +1,6 @@
 <?php
-require_once '../../includes/config.php';
-require_once '../../includes/auth.php';
+require_once '../includes/config.php';
+require_once '../includes/auth.php';
 require_role(['admin','staff']);
 
 if (!isset($_GET['visit_id'])) {

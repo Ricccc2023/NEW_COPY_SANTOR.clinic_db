@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/includes/config.php';
 
 $testsList = ["CBC","Urinalysis","Fecalysis","Chest Xray","ECG","Physical Exam"];
 
@@ -380,4 +380,4 @@ dateInput.addEventListener('change', checkSlots);
 <?php
 $content = ob_get_clean();
 $hideSidebar = true;
-require_once __DIR__ . "/../includes/layout.php";
+require_once __DIR__ . "../includes/layout.php";

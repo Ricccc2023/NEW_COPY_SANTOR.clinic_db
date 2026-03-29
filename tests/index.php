@@ -1,6 +1,6 @@
 <?php
-require_once '../../includes/config.php';
-require_once '../../includes/auth.php';
+require_once '../includes/config.php';
+require_once '../includes/auth.php';
 require_role(['admin','doctor']);
 
 /* ==================================================
@@ -168,4 +168,4 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once '../../includes/layout.php';
+require_once '../includes/layout.php';

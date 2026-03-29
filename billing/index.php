@@ -1,6 +1,6 @@
 <?php
-require_once '../../includes/config.php';
-require_once '../../includes/auth.php';
+require_once '../includes/config.php';
+require_once '../includes/auth.php';
 
 require_role(['admin','staff']);
 
@@ -160,10 +160,14 @@ ob_start();
                         <td><?= date('M d, Y', strtotime($bill['created_at'])) ?></td>
                         <td>
                             <a href="../prints/print_billing.php?visit_id=<?= $bill['visit_id'] ?>"
-                               class="action-btn action-secondary"
-                               target="_blank">
-                               Print
+                            class="action-btn action-secondary"
+                            target="_blank">
+                            Print
                             </a>
+                            <a href="edit.php?visit_id=<?= $bill['visit_id'] ?>"
+                                class="btn-save">
+                                Edit
+                                </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -180,5 +184,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once '../../includes/layout.php';
+require_once '../includes/layout.php';
 ?>

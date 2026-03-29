@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../includes/config.php';
-require_once __DIR__ . '/../../includes/auth.php';
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/auth.php';
 
 if (!isset($_SESSION['user'])) {
     header("Location: ../login.php");
@@ -268,4 +268,4 @@ if (!empty($p['tests'])) {
 
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . '/../../includes/layout.php';
+require_once __DIR__ . '/../includes/layout.php';

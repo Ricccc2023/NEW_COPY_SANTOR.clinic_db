@@ -1,5 +1,5 @@
 <?php
-define('BASE_URL', '/clinic_db/public');
+define('BASE_URL', '/clinic_db');
 
 $role = $_SESSION['user']['role'] ?? '';
 ?>

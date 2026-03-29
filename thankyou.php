@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Clinic Login</title>
-  <link rel="stylesheet" href="/clinic_db/clinic/assets/css/clinic.css"></head>
+  <link rel="stylesheet" href="clinic/assets/css/clinic.css"></head>
 <body>
 
 <!-- ===== SYSTEM BANNER (ADDED ONLY) ===== -->
