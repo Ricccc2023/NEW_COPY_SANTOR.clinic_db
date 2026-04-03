@@ -124,7 +124,6 @@ ob_start();
 <div class="page-header">
 <div class="page-title">
 <h2>Appointments</h2>
-<p class="sub">Pending / Confirmed</p>
 </div>
 
 <?php if($isAdmin): ?>

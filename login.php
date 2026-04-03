@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ];
       $role = $_SESSION['user']['role'] ?? '';
     if ($role === 'staff') {
-      header("Location: /clinic_db/public/dashboard.php");
+      header("Location: dashboard.php");
     } else {
-      header("Location: /clinic_db/public/dashboard.php");
+      header("Location: dashboard.php");
     }
     exit;
 

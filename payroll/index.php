@@ -44,7 +44,7 @@ ob_start();
 <div class="page-header">
     <div class="page-title">
         <h2>Payroll Management</h2>
-        <p class="sub">Generate simple payslip for doctors</p>
+        
     </div>
 </div>
 

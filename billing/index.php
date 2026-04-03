@@ -92,7 +92,7 @@ ob_start();
 
 <div class="card">
     <div class="card-header">
-        <h3>Billing Dashboard (Real-Time)</h3>
+        <h3>Billing Dashboard</h3>
     </div>
 
     <div style="display:flex; gap:15px; flex-wrap:wrap;">

@@ -112,7 +112,7 @@ ob_start();
 ?>
 
 <h2>Doctors</h2>
-<p style="color:#666;margin-bottom:20px;">Manage doctor directory</p>
+
 
 <?php if ($role === 'admin'): ?>
 
